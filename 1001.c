@@ -14,7 +14,7 @@ int main(int argc, char const *argv[])
 
 	// dealing with negative sign
 	if (sum < 0)
-	{
+c{
 		printf("-");
 		sum = (- sum);
 	}
