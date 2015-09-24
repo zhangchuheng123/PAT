@@ -46,7 +46,7 @@ int main(int argc, char const *argv[])
 	label[currentCity] = VISITED;
 	DFS(currentCity, saveCity, 0, groupInCity[currentCity]);
 
-	printf("%d %d", shortestLen, maxGroup);
+	printf("%d %d", shortestCount, maxGroup);
 
 	return 0;
 }
