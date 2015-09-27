@@ -31,7 +31,7 @@ sample output
 
 int main(int argc, char const *argv[])
 {
-	long startNum, endNum, maxSum, curSum, n, curNum, maxStartNum;
+	long startNum, endNum, maxSum, curSum, n, curNum, ansStartNum;
 	short flag; 		//set the next num to curNum if flag == FLAG_NEXT 
 
 	scanf("%ld", &n);
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
 		{
 			if (i == 0)
 			{
-				maxStartNum = curNum;
+				ansStartNum = curNum;
 			}
 			startNum = curNum;
 			flag = FLAG_NONE;
@@ -65,7 +65,7 @@ int main(int argc, char const *argv[])
 			curSum += curNum;
 			maxSum = curSum;
 			endNum = curNum;
-			maxStartNum = startNum;
+			ansStartNum = startNum;
 			//printf("Find max so far maxSum=%d, startNum=%d, endNum=%d\n", maxSum, startNum, endNum);
 		} else if (curSum + curNum > 0)
 		{
@@ -85,7 +85,7 @@ int main(int argc, char const *argv[])
 		endNum = curNum;
 	}
 
-	printf("%ld %ld %ld", maxSum, maxStartNum, endNum);
+	printf("%ld %ld %ld", maxSum, ansStartNum, endNum);
 
 	return 0;
 }
