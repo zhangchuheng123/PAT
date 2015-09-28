@@ -29,15 +29,17 @@ sample output
 
 #define ENDNUM_UNSET_FLAG -1 	// if endNum is set, it is impossible that the last number will be negative
 
+long startNum, endNum, maxSum, curSum, n, curNum, ansStartNum;
+short flag; 		//set the next num to curNum if flag == FLAG_NEXT 
+
 int main(int argc, char const *argv[])
 {
-	long startNum, endNum, maxSum, curSum, n, curNum, ansStartNum;
-	short flag; 		//set the next num to curNum if flag == FLAG_NEXT 
 
 	scanf("%ld", &n);
 
 	flag = FLAG_NEXT;
 	endNum = ENDNUM_UNSET_FLAG;
+	maxSum = -1;
 
 	//scan once
 	for (int i = 0; i < n; ++i)
@@ -47,7 +49,7 @@ int main(int argc, char const *argv[])
 		// if there's a flag, assign the current integer as the start number
 		// there is a flag if 1. it is the first number 2. last curSum < 0 
 
-		//printf("Now dealing with %d\n", curNum);
+		//printf("Now dealing with %ld\n", curNum);
 		if (flag == FLAG_NEXT)
 		{
 			if (i == 0)
@@ -56,7 +58,7 @@ int main(int argc, char const *argv[])
 			}
 			startNum = curNum;
 			flag = FLAG_NONE;
-			//printf("Set %d to startNum\n", curNum);
+			//printf("Set %ld to startNum\n", curNum);
 		}
 
 		// there are 3 cases: 1. new maximum appears 2. not exceeding existed maximum but not negative 3. sum is negative
@@ -66,11 +68,11 @@ int main(int argc, char const *argv[])
 			maxSum = curSum;
 			endNum = curNum;
 			ansStartNum = startNum;
-			//printf("Find max so far maxSum=%d, startNum=%d, endNum=%d\n", maxSum, startNum, endNum);
-		} else if (curSum + curNum > 0)
+			//printf("Find max so far maxSum=%ld, startNum=%ld, endNum=%ld\n", maxSum, startNum, endNum);
+		} else if (curSum + curNum >= 0)
 		{
 			curSum += curNum;
-			//printf("Not the max but still couting, curSum=%d\n", curSum);
+			//printf("Not the max but still couting, curSum=%ld\n", curSum);
 		} else if (curSum + curNum < 0)
 		{
 			curSum = 0;
@@ -82,6 +84,7 @@ int main(int argc, char const *argv[])
 	// if endNum is never set, all the interger must be negative
 	if (endNum == ENDNUM_UNSET_FLAG)
 	{
+		maxSum = 0;
 		endNum = curNum;
 	}
 
